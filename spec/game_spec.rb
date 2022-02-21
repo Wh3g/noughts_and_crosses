@@ -14,4 +14,13 @@ describe Game do
       expect(subject.grid[0][0]).to eq "O"
     end
   end
+
+  describe "#play_turn" do
+    it "x and o take turns to play" do
+      subject.play_turn(0, 0)
+      subject.play_turn(0, 1)
+      expect(subject.grid[0][0]).to eq "X"
+      expect(subject.grid[0][1]).to eq "O"
+    end
+  end
 end
