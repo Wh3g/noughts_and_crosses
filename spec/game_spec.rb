@@ -42,12 +42,21 @@ describe Game do
       expect(subject.winner).to eq :x
     end
 
-    it "declares winner when player claims diagonal" do
+    it "declares winner when player claims left to right diagonal" do
       subject.play_turn(0, 0)
       subject.switch_turn
       subject.play_turn(1, 1)
       subject.switch_turn
       subject.play_turn(2, 2)
+      expect(subject.winner).to eq :x
+    end
+
+    it "declares winner when player claims right to left diagonal" do
+      subject.play_turn(0, 2)
+      subject.switch_turn
+      subject.play_turn(1, 1)
+      subject.switch_turn
+      subject.play_turn(2, 0)
       expect(subject.winner).to eq :x
     end
   end

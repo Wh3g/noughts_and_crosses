@@ -45,6 +45,8 @@ class Game
   def check_diagonals
     if check_fields([@grid[0][0], @grid[1][1], @grid[2][2]])
       @winner = @turn
+    elsif check_fields([@grid[0][2], @grid[1][1], @grid[2][0]])
+      @winner = @turn
     end
   end
 
