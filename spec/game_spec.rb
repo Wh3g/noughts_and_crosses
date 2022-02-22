@@ -22,5 +22,10 @@ describe Game do
       expect(subject.grid[0][0]).to eq "X"
       expect(subject.grid[0][1]).to eq "O"
     end
+
+    it "cannot claim a field that is already been taken" do
+      subject.play_turn(0, 0)
+      expect{ subject.play_turn(0, 0) }.to raise_error "this square is taken"
+    end
   end
 end

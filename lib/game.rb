@@ -1,11 +1,14 @@
 class Game
   attr_reader :grid
   def initialize
-    @grid = [["", "", ""], ["", "", ""], ["", "", ""]]
+    @grid = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
     @turn = :x
   end
   
   def play_turn(y_axis, x_axis)
+    unless @grid[y_axis][x_axis].nil?
+      raise "this square is taken"
+    end
     case @turn
     when :x
       play_x(y_axis, x_axis)
