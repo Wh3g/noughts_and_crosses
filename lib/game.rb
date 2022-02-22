@@ -13,6 +13,7 @@ class Game
     @grid[y_axis][x_axis] = @turn
     check_rows
     check_columns
+    check_diagonals
     switch_turn
   end
 
@@ -38,6 +39,12 @@ class Game
       if check_fields([@grid[0][index], @grid[1][index], @grid[2][index]])
         @winner = @turn
       end
+    end
+  end
+
+  def check_diagonals
+    if check_fields([@grid[0][0], @grid[1][1], @grid[2][2]])
+      @winner = @turn
     end
   end
 
