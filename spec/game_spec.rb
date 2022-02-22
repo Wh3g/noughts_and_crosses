@@ -33,5 +33,13 @@ describe Game do
       subject.play_turn(0, 2)
       expect(subject.winner).to eq :x
     end
+    it "declares winner when player claims column" do
+      subject.play_turn(0, 0)
+      subject.switch_turn
+      subject.play_turn(1, 0)
+      subject.switch_turn
+      subject.play_turn(2, 0)
+      expect(subject.winner).to eq :x
+    end
   end
 end

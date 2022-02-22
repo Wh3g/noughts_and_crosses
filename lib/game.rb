@@ -12,6 +12,7 @@ class Game
     end
     @grid[y_axis][x_axis] = @turn
     check_rows
+    check_columns
     switch_turn
   end
 
@@ -26,7 +27,15 @@ class Game
 
   def check_rows
     @grid.each do | row |
-      if row[0] == row[1] && row[0] == row[2]
+      if row == [@turn, @turn, @turn]
+        @winner = @turn
+      end
+    end
+  end
+
+  def check_columns
+    3.times do | index |
+      if [@grid[0][index], @grid[1][index], @grid[2][index]] == [@turn, @turn, @turn]
         @winner = @turn
       end
     end
