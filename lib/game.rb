@@ -11,9 +11,7 @@ class Game
       raise "this square is taken"
     end
     @grid[y_axis][x_axis] = @turn
-    check_rows
-    check_columns
-    check_diagonals
+    check_winner
     switch_turn
   end
 
@@ -26,10 +24,16 @@ class Game
     end
   end
 
+  def check_winner
+    if check_rows || check_columns || check_diagonals
+      @winner = @turn
+    end
+  end
+
   def check_rows
     @grid.each do | row |
       if check_fields(row)
-        @winner = @turn
+        return true
       end
     end
   end
@@ -37,16 +41,16 @@ class Game
   def check_columns
     3.times do | index |
       if check_fields([@grid[0][index], @grid[1][index], @grid[2][index]])
-        @winner = @turn
+        return true
       end
     end
   end
 
   def check_diagonals
     if check_fields([@grid[0][0], @grid[1][1], @grid[2][2]])
-      @winner = @turn
+      return true
     elsif check_fields([@grid[0][2], @grid[1][1], @grid[2][0]])
-      @winner = @turn
+      return true
     end
   end
 
