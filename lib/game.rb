@@ -27,7 +27,7 @@ class Game
 
   def check_rows
     @grid.each do | row |
-      if row == [@turn, @turn, @turn]
+      if check_fields(row)
         @winner = @turn
       end
     end
@@ -35,9 +35,13 @@ class Game
 
   def check_columns
     3.times do | index |
-      if [@grid[0][index], @grid[1][index], @grid[2][index]] == [@turn, @turn, @turn]
+      if check_fields([@grid[0][index], @grid[1][index], @grid[2][index]])
         @winner = @turn
       end
     end
+  end
+
+  def check_fields(field_array)
+    field_array == [@turn, @turn, @turn]
   end
 end
