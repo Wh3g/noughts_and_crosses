@@ -9,21 +9,16 @@ class Game
     unless @grid[y_axis][x_axis].nil?
       raise "this square is taken"
     end
+    @grid[y_axis][x_axis] = @turn
+    switch_turn
+  end
+
+  def switch_turn
     case @turn
     when :x
-      play_x(y_axis, x_axis)
+      @turn = :o
     when :o
-      play_o(y_axis, x_axis)
+      @turn = :x
     end
-  end
-
-  def play_x(y_axis, x_axis)
-    @grid[y_axis][x_axis] = "X"
-    @turn = :o
-  end
-
-  def play_o(y_axis, x_axis)
-    @grid[y_axis][x_axis] = "O"
-    @turn = :x
   end
 end
