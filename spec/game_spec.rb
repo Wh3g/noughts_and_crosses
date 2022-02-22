@@ -12,7 +12,7 @@ describe Game do
       subject.play_turn(0, 0)
       expect(subject.grid[0][0]).to eq :o
     end
-    
+
     it "x and o take turns to play" do
       subject.play_turn(0, 0)
       subject.play_turn(0, 1)
@@ -23,6 +23,15 @@ describe Game do
     it "cannot claim a field that is already been taken" do
       subject.play_turn(0, 0)
       expect{ subject.play_turn(0, 0) }.to raise_error "this square is taken"
+    end
+
+    it "declares winner when player claims row" do
+      subject.play_turn(0, 0)
+      subject.switch_turn
+      subject.play_turn(0, 1)
+      subject.switch_turn
+      subject.play_turn(0, 2)
+      expect(subject.winner).to eq :x
     end
   end
 end
