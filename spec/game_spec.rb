@@ -59,5 +59,14 @@ describe Game do
       subject.play_turn(2, 0)
       expect(subject.winner).to eq :x
     end
+
+    it "ends game when winner declared" do
+      subject.play_turn(0, 0)
+      subject.switch_turn
+      subject.play_turn(0, 1)
+      subject.switch_turn
+      subject.play_turn(0, 2)
+      expect{ subject.play_turn(1, 0) }.to raise_error "Game over, x has won"
+    end
   end
 end

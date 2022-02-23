@@ -7,11 +7,15 @@ class Game
   end
   
   def play_turn(y_axis, x_axis)
-    unless @grid[y_axis][x_axis].nil?
+    unless @grid[y_axis][x_axis].nil? 
       raise "this square is taken"
+    end
+    unless @winner.nil? 
+      raise "Game over, #{@winner} has won"
     end
     @grid[y_axis][x_axis] = @turn
     check_winner
+    @winner
     switch_turn
   end
 
@@ -36,6 +40,7 @@ class Game
         return true
       end
     end
+    false
   end
 
   def check_columns
@@ -44,6 +49,7 @@ class Game
         return true
       end
     end
+    false
   end
 
   def check_diagonals
@@ -52,6 +58,7 @@ class Game
     elsif check_fields([@grid[0][2], @grid[1][1], @grid[2][0]])
       return true
     end
+    false
   end
 
   def check_fields(field_array)
